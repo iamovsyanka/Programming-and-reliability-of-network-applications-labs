@@ -1,0 +1,7 @@
+﻿  ServerB.cpp
+  Создание кода
+  Previous IPDB not found, fall back to full compilation.
+D:\3 курс\Programming-and-reliability-of-network-applications-labs\Broadcast\ServerB\ServerB\ServerB.cpp(114): warning C4715: PutAnswerToClient: значение возвращается не при всех путях выполнения
+  All 107 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Создание кода завершено
+  ServerB.vcxproj -> D:\3 курс\Programming-and-reliability-of-network-applications-labs\Broadcast\ServerB\Release\ServerB.exe
