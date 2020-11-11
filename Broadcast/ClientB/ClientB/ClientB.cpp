@@ -54,9 +54,8 @@ bool GetServer(const char* call, short port, struct sockaddr* from, int* flen) {
 
         SOCKADDR_IN all;                        // параметры  сокета sS
         all.sin_family = AF_INET;               // используется IP-адресация  
-        all.sin_port = htons(2000);             // порт 2000
+        all.sin_port = htons(port);             // порт 2000
         all.sin_addr.s_addr = INADDR_BROADCAST; // всем 
-
 
         if ((cC = socket(AF_INET, SOCK_DGRAM, NULL)) == INVALID_SOCKET) {
             throw  SetErrorMsgText("socket:", WSAGetLastError());
@@ -66,14 +65,15 @@ bool GetServer(const char* call, short port, struct sockaddr* from, int* flen) {
             throw  SetErrorMsgText("setsocketopt:", WSAGetLastError());
         }
 
-        if ((lb = sendto(cC, call, sizeof(call) + 2, NULL, (sockaddr*)&all, sizeof(all))) == SOCKET_ERROR) {
+        if ((lb = sendto(cC, call, sizeof("Hello"), NULL, (sockaddr*)&all, sizeof(all))) == SOCKET_ERROR) {
             throw SetErrorMsgText("sendto:", WSAGetLastError());
         }
+        cout << lb;
 
         if (lobuf = recvfrom(cC, buf, sizeof(buf), NULL, (sockaddr*)from, flen) == SOCKET_ERROR) {
             throw SetErrorMsgText("recvfrom:", WSAGetLastError());
         }
-
+        cout << buf;
         struct sockaddr_in* server = (struct sockaddr_in*) from;
         cout << "Server port: " << ntohs(server->sin_port) << "\nServer IP: " << inet_ntoa(server->sin_addr) << endl;
 

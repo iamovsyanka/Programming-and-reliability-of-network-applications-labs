@@ -1,3 +1,2 @@
 ﻿  ServerB.cpp
-D:\3 курс\Programming-and-reliability-of-network-applications-labs\Broadcast\ServerB\ServerB\ServerB.cpp(113): warning C4715: PutAnswerToClient: значение возвращается не при всех путях выполнения
   ServerB.vcxproj -> D:\3 курс\Programming-and-reliability-of-network-applications-labs\Broadcast\ServerB\Debug\ServerB.exe
