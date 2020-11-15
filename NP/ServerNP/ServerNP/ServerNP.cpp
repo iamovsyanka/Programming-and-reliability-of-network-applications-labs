@@ -6,6 +6,7 @@
 #include "Windows.h"
 
 #define NAME L"\\\\.\\pipe\\Tube"
+
 using namespace std;
 
 int main()
@@ -30,7 +31,6 @@ int main()
             throw SetPipeError("ConnectNamedPipe: ", GetLastError());
         }
 
-
         while (true) {
             if (ReadFile(sH, buf, sizeof(buf), &lp, NULL)) {
                 cout << buf << endl;
@@ -50,10 +50,11 @@ int main()
         if (!DisconnectNamedPipe(sH)) {
             throw SetPipeError("DisconnectNamedPipe: ", GetLastError());
         }
-
         if (!CloseHandle(sH)) {
             throw SetPipeError("CloseHandle: ", GetLastError());
         }
+
+        system("pause");
     }
     catch (string ErrorPipeText) {
         cout << endl << ErrorPipeText;
