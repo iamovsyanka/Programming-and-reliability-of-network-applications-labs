@@ -5,6 +5,7 @@
 #include "ErrorMsgText.h"
 #include "Windows.h"
 
+#define NAME L"\\\\.\\pipe\\Tube"
 using namespace std;
 
 int main()
@@ -18,7 +19,7 @@ int main()
     try  {
         cout << "ServerNP" << endl << endl;
 
-        if ((sH = CreateNamedPipe(L"\\\\.\\pipe\\Tube",
+        if ((sH = CreateNamedPipe(NAME,
             PIPE_ACCESS_DUPLEX, PIPE_TYPE_MESSAGE | PIPE_WAIT,
             1, NULL, NULL, INFINITE, NULL)) == INVALID_HANDLE_VALUE) {
             throw SetPipeError("CreateNamedPipe: ", GetLastError());
