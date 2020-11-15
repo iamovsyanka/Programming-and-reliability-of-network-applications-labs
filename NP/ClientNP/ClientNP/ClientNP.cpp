@@ -50,6 +50,8 @@ int main()
         if (!CloseHandle(cH)) {
             throw SetPipeError("CloseHandle: ", GetLastError());
         }
+
+        system("pause");
     }
     catch (string ErrorPipeText) {
         cout << endl << ErrorPipeText;
