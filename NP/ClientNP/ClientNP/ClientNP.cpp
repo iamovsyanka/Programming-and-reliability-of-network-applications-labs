@@ -5,6 +5,7 @@
 #include "ErrorMsgText.h"
 #include "Windows.h"
 
+#define NAME L"\\\\.\\pipe\\Tube"
 #define STOP "STOP"
 
 using namespace std;
@@ -20,8 +21,7 @@ int main()
     try {
         cout << "ClientNP" << endl << endl;
 
-        if ((cH = CreateFile(L"\\\\.\\pipe\\Tube",
-            GENERIC_READ | GENERIC_WRITE,
+        if ((cH = CreateFile(NAME, GENERIC_READ | GENERIC_WRITE,
             FILE_SHARE_READ | FILE_SHARE_WRITE,
             NULL, OPEN_EXISTING, NULL, NULL)) == INVALID_HANDLE_VALUE) {
             throw  SetPipeError("CreateFile: ", GetLastError());
@@ -47,7 +47,6 @@ int main()
         if (!WriteFile(cH, STOP, sizeof(STOP), &lp, NULL)) {
             throw SetPipeError("WriteFile: ", GetLastError());
         }
-
         if (!CloseHandle(cH)) {
             throw SetPipeError("CloseHandle: ", GetLastError());
         }
