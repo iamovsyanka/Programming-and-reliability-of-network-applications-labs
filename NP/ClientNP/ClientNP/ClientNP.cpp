@@ -19,7 +19,7 @@ int main()
     char buf[50];
 
     try {
-        cout << "ClientNP" << endl << endl;
+        cout << "ClientNP\n\n";
 
         if ((cH = CreateFile(NAME, GENERIC_READ | GENERIC_WRITE,
             FILE_SHARE_READ | FILE_SHARE_WRITE,
@@ -32,7 +32,7 @@ int main()
         cin >> countMessage;
 
         for (int i = 1; i <= countMessage; i++) {
-            string obuf = "Hello from Client " + to_string(i);
+            string obuf = "Hello from ClientNP " + to_string(i);
 
             if (!WriteFile(cH, obuf.c_str(), sizeof(obuf), &lp, NULL)) {
                 throw SetPipeError("WriteFile: ", GetLastError());

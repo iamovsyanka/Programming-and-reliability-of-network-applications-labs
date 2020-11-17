@@ -17,8 +17,8 @@ int main()
     DWORD lp;
     char buf[50];
 
-    try  {
-        cout << "ServerNP" << endl << endl;
+    try {
+        cout << "ServerNP\n\n";
 
         if ((sH = CreateNamedPipe(NAME,
             PIPE_ACCESS_DUPLEX, PIPE_TYPE_MESSAGE | PIPE_WAIT,
@@ -27,29 +27,38 @@ int main()
         }
 
         cout << "Waiting for connect...\n";
-        if (!ConnectNamedPipe(sH, NULL)) {
-            throw SetPipeError("ConnectNamedPipe: ", GetLastError());
-        }
+
 
         while (true) {
-            if (ReadFile(sH, buf, sizeof(buf), &lp, NULL)) {
-                cout << buf << endl;
+            if (!ConnectNamedPipe(sH, NULL)) {
+                throw SetPipeError("ConnectNamedPipe: ", GetLastError());
+            }
+            while (true) {
+                if (ReadFile(sH, buf, sizeof(buf), &lp, NULL)) {
+                    cout << buf << endl;
 
-                if (strcmp(buf, "STOP") == 0) {
-                    break;
+                    if (strcmp(buf, "STOP") == 0) {
+                        cout << endl;
+                        break;
+                    }
+                    if (WriteFile(sH, buf, sizeof(buf), &lp, NULL)) {
+                        if (strstr(buf, "ClientNPct")) {
+                            break;
+                        }
+                    }
+                    else {
+                        throw SetPipeError("WriteFile: ", GetLastError());
+                    }
                 }
-                if (!WriteFile(sH, buf, sizeof(buf), &lp, NULL)) {
-                    throw SetPipeError("WriteFile: ", GetLastError());
+                else {
+                    throw SetPipeError("ReadFile: ", GetLastError());
                 }
             }
-            else {
-                throw SetPipeError("ReadFile: ", GetLastError());
+            if (!DisconnectNamedPipe(sH)) {
+                throw SetPipeError("DisconnectNamedPipe: ", GetLastError());
             }
         }
 
-        if (!DisconnectNamedPipe(sH)) {
-            throw SetPipeError("DisconnectNamedPipe: ", GetLastError());
-        }
         if (!CloseHandle(sH)) {
             throw SetPipeError("CloseHandle: ", GetLastError());
         }

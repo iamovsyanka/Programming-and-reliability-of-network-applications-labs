@@ -21,7 +21,7 @@ int main()
          obuf[50];
 
     try {
-        cout << "ClientNPt" << endl << endl;
+        cout << "ClientNPt\n\n";
 
         if ((cH = CreateFile(NAME, GENERIC_READ | GENERIC_WRITE,
             FILE_SHARE_READ | FILE_SHARE_WRITE,
@@ -38,7 +38,8 @@ int main()
         cin >> countMessage;
 
         for (int i = 1; i <= countMessage; i++) {
-            string obufstr = "Hello from Client " + to_string(i);
+
+            string obufstr = "Hello from ClientNPt " + to_string(i);
             strcpy_s(obuf, obufstr.c_str());
 
             if (!TransactNamedPipe(cH, obuf, sizeof(obuf), ibuf, sizeof(ibuf), &lp, NULL)) {

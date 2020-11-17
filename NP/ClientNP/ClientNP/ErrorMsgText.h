@@ -58,6 +58,7 @@ string GetErrorMsgText(int code)
 	case ERROR_PIPE_CONNECTED: msgText = "There is a process on other end of the pipe"; break;
 	case ERROR_PIPE_LISTENING: msgText = "Waiting for a process to open the other end of the pipe"; break;
 	case ERROR_CALL_NOT_IMPLEMENTED: msgText = "This function is not supported on this system"; break;
+	case ERROR_PIPE_NOT_CONNECTED: msgText = "No process is on the other end of the pipe."; break;
 	default: msgText = "Error..."; break;
 	}
 
