@@ -35,12 +35,12 @@ int main()
             }
             while (true) {
                 if (ReadFile(sH, buf, sizeof(buf), &lp, NULL)) {
-                    cout << buf << endl;
 
                     if (strcmp(buf, "STOP") == 0) {
                         cout << endl;
                         break;
                     }
+                    cout << buf << endl;
                     if (WriteFile(sH, buf, sizeof(buf), &lp, NULL)) {
                         if (strstr(buf, "ClientNPct")) {
                             break;
