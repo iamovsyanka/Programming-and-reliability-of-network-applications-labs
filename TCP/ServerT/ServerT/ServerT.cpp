@@ -40,28 +40,41 @@ int main()
 
         clock_t start, end;
         char ibuf[50], obuf[50] = "server: принято ";     
-        int  libuf = 0, lobuf = 0;                         
+        int libuf = 0, lobuf = 0;     
+        bool flag = true;
 
-        if ((cS = accept(sS, (sockaddr*)&clnt, &lclnt)) == INVALID_SOCKET) {
-            throw SetErrorMsgText("accept: ", WSAGetLastError());
-        }
-
-        start = clock();
         while (true) {
-            if ((libuf = recv(cS, ibuf, sizeof(ibuf), NULL)) == SOCKET_ERROR) {
-                throw SetErrorMsgText("recv: ", WSAGetLastError());
+            if ((cS = accept(sS, (sockaddr*)&clnt, &lclnt)) == INVALID_SOCKET) {
+                throw SetErrorMsgText("accept: ", WSAGetLastError());
             }
 
-            string obuf = ibuf;
-            if ((lobuf = send(cS, obuf.c_str(), strlen(obuf.c_str()) + 1, NULL)) == SOCKET_ERROR) {
-                throw SetErrorMsgText("send: ", WSAGetLastError());
-            }
+            while (true) {
+                if ((libuf = recv(cS, ibuf, sizeof(ibuf), NULL)) == SOCKET_ERROR) {
+                    throw SetErrorMsgText("recv: ", WSAGetLastError());
+                }
+                else {
+                    if (flag) {
+                        flag = false;
+                        start = clock();
+                    }
+                }
 
-            if (strcmp(ibuf, "") == 0) break;
-            cout << ibuf << endl;
+                string obuf = ibuf;
+                if ((lobuf = send(cS, obuf.c_str(), strlen(obuf.c_str()) + 1, NULL)) == SOCKET_ERROR) {
+                    throw SetErrorMsgText("send: ", WSAGetLastError());
+                }
+
+                if (strcmp(ibuf, "") == 0) {
+                    flag = true;
+                    end = clock();
+                    cout << "Time for send and recv: " << ((double)(end - start) / CLK_TCK) << " c\n\n";
+                    break;
+                }
+                else {
+                    cout << ibuf << endl;
+                }
+            }
         }
-        end = clock();
-        cout << "Time for send and recv: " << ((double)(end - start) / CLK_TCK) << " c" << endl;
 
         if (closesocket(cS) == SOCKET_ERROR) {
             throw  SetErrorMsgText("closesocket: ", WSAGetLastError());
