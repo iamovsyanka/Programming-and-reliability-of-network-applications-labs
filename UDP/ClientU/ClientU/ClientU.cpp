@@ -12,6 +12,8 @@
 
 using namespace std;
 
+//Для демонстрации потери сообщений закомментить recvfrom
+
 int main()
 {
     setlocale(LC_ALL, "rus");
@@ -50,9 +52,9 @@ int main()
                 throw  SetErrorMsgText("sendto: ", WSAGetLastError());
             }
 
-            //if ((lobuf = recvfrom(cC, ibuf, sizeof(ibuf), NULL, (sockaddr*)&serv, &ls)) == SOCKET_ERROR) {
-            //    throw  SetErrorMsgText("recvfrom:", WSAGetLastError());
-            //}
+            if ((lobuf = recvfrom(cC, ibuf, sizeof(ibuf), NULL, (sockaddr*)&serv, &ls)) == SOCKET_ERROR) {
+                throw  SetErrorMsgText("recvfrom:", WSAGetLastError());
+            }
 
             cout << obuf << endl;
         }

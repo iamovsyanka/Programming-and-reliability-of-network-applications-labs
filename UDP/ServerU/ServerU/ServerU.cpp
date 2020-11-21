@@ -10,6 +10,8 @@
 
 #define PORT 2000
 
+//Для демонстрации потери сообщений раскомментить Sleep(10) и закомментить sendto 
+
 int main()
 {
     setlocale(LC_ALL, "rus");
@@ -37,29 +39,36 @@ int main()
 
         SOCKADDR_IN clnt;               
         memset(&clnt, 0, sizeof(clnt));   
-        int lc = sizeof(clnt);
         char ibuf[50];                  
-        int  lb = 0, lobuf = 0, count = 0; 
+        int lc = sizeof(clnt), lb = 0, lobuf = 0;
         clock_t start, end;
+        bool flag = true;
 
-        start = clock();
         while (true) {
-            Sleep(10);
+            //Sleep(10);
             if ((lb = recvfrom(sS, ibuf, sizeof(ibuf), NULL, (sockaddr*)&clnt, &lc)) == SOCKET_ERROR) {
                 throw  SetErrorMsgText("recvfrom:", WSAGetLastError());
             }
+            else {
+                if (flag) {
+                    flag = false;
+                    start = clock();
+                }
+            }
 
-            //if ((lobuf = sendto(sS, ibuf, strlen(ibuf) + 1, NULL, (sockaddr*)&clnt, lc)) == SOCKET_ERROR) {  
-            //    throw SetErrorMsgText("sendto: ", WSAGetLastError());
-            //} 
+            if ((lobuf = sendto(sS, ibuf, strlen(ibuf) + 1, NULL, (sockaddr*)&clnt, lc)) == SOCKET_ERROR) {  
+                throw SetErrorMsgText("sendto: ", WSAGetLastError());
+            } 
 
             if (strcmp(ibuf, "") == 0) {
-                break;
+                end = clock();
+                flag = true;
+                cout << "\nTime for sendto and recvfrom: " << ((double)(end - start) / CLK_TCK) << " c\n\n";
             }
-            cout << ibuf << endl;
+            else {
+                cout << ibuf << endl;
+            }
         }
-        end = clock();
-        cout << count << "\n\nTime for sendto and recvfrom: " << ((double)(end - start) / CLK_TCK) << " c" << endl;
 
         if (closesocket(sS) == SOCKET_ERROR) {
             throw  SetErrorMsgText("closesocket: ", WSAGetLastError());
