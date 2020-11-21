@@ -28,7 +28,6 @@ int main()
 
         cout << "Waiting for connect...\n";
 
-
         while (true) {
             if (!ConnectNamedPipe(sH, NULL)) {
                 throw SetPipeError("ConnectNamedPipe: ", GetLastError());

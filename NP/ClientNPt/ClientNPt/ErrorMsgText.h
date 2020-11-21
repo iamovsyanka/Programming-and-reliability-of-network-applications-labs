@@ -65,5 +65,5 @@ string GetErrorMsgText(int code)
 }
 
 string SetPipeError(string msgText, int code) {
-	return msgText + GetErrorMsgText(code);
+	return msgText + GetErrorMsgText(code) + "\n\n";
 }

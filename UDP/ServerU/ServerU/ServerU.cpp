@@ -8,6 +8,8 @@
 #pragma warning(disable : 4996)
 #pragma comment(lib, "WS2_32.lib")  
 
+#define PORT 2000
+
 int main()
 {
     setlocale(LC_ALL, "rus");
@@ -17,10 +19,12 @@ int main()
     SOCKET  sS;                           
     SOCKADDR_IN serv;                   
     serv.sin_family = AF_INET;          
-    serv.sin_port = htons(2000);        
+    serv.sin_port = htons(PORT);        
     serv.sin_addr.s_addr = INADDR_ANY;   
 
     try {
+        cout << "ServerU\n\n";
+
         if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
             throw  SetErrorMsgText("Startup: ", WSAGetLastError());
         }
@@ -30,8 +34,6 @@ int main()
         if (bind(sS, (LPSOCKADDR)&serv, sizeof(serv)) == SOCKET_ERROR) {
             throw  SetErrorMsgText("bind: ", WSAGetLastError());
         }
-
-        cout << "ServerU\n\n";
 
         SOCKADDR_IN clnt;               
         memset(&clnt, 0, sizeof(clnt));   

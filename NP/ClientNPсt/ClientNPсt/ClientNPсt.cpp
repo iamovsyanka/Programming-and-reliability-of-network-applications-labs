@@ -16,7 +16,7 @@ int main()
 
     HANDLE cH;
     DWORD lp;
-    char ibuf[50], obuf[50], stop[50] = "STOP";
+    char ibuf[50], obuf[50];
 
     try {
         cout << "ClientNPсt\n\n";

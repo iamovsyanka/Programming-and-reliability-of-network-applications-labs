@@ -60,6 +60,7 @@ string GetErrorMsgText(int code)
 	case ERROR_CALL_NOT_IMPLEMENTED: msgText = "This function is not supported on this system"; break;
 	case ERROR_INVALID_NAME: msgText = "The filename, directory name, or volume label syntax is incorrect."; break;
 	case ERROR_SEM_TIMEOUT: msgText = "The semaphore timeout period has expired."; break;
+	case ERROR_ALREADY_EXISTS: msgText = "Cannot create a file when that file already exists."; break;
 	default: msgText = "Error..."; break;
 	}
 
@@ -67,5 +68,5 @@ string GetErrorMsgText(int code)
 }
 
 string SetPipeError(string msgText, int code) {
-	return msgText + GetErrorMsgText(code);
+	return msgText + GetErrorMsgText(code) + "\n\n";
 }

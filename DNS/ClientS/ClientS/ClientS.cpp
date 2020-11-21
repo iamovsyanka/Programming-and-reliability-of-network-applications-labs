@@ -9,7 +9,7 @@
 #pragma comment(lib, "WS2_32.lib")
 
 #define CALL "Hello"
-#define NAME "LAPTOP-ADTTMHK8"
+#define NAME "WIN-C5B264JT20J"
 #define PORT 2000
 
 using namespace std;

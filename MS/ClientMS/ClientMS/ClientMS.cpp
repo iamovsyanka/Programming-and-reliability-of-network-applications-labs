@@ -12,6 +12,8 @@ using namespace std;
 
 int main()
 {
+    setlocale(LC_ALL, "rus");
+
     HANDLE cM;
     DWORD rb;
     clock_t start, end;
@@ -31,6 +33,7 @@ int main()
 
         for (int i = 1; i <= countMessage; i++) {
             if (i) {
+
                 start = clock();
             }
 
@@ -56,6 +59,6 @@ int main()
         system("pause");
     }
     catch (string ErrorPipeText) {
-        cout << endl << GetLastError();
+        cout << endl << ErrorPipeText;
     }
 }
