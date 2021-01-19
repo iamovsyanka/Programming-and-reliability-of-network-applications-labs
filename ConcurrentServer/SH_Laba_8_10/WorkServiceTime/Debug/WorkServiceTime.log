@@ -1,0 +1,6 @@
+﻿  WorkServiceTime.cpp
+C:\Users\Onya\Downloads\Telegram Desktop\SH_Laba_8-10\SH_Laba_8_10\WorkServiceTime\WorkServiceTime.cpp(24,10): warning C4101: serverName: неиспользованная локальная переменная
+C:\Users\Onya\Downloads\Telegram Desktop\SH_Laba_8-10\SH_Laba_8_10\WorkServiceTime\WorkServiceTime.cpp(27,10): warning C4101: result: неиспользованная локальная переменная
+C:\Users\Onya\Downloads\Telegram Desktop\SH_Laba_8-10\SH_Laba_8_10\WorkServiceTime\WorkServiceTime.cpp(25,10): warning C4101: MailName: неиспользованная локальная переменная
+C:\Users\Onya\Downloads\Telegram Desktop\SH_Laba_8-10\SH_Laba_8_10\WorkServiceTime\WorkServiceTime.cpp(22,11): warning C4101: dw: неиспользованная локальная переменная
+  WorkServiceTime.vcxproj -> C:\Users\Onya\Downloads\Telegram Desktop\SH_Laba_8-10\SH_Laba_8_10\Debug\WorkServiceTime.exe

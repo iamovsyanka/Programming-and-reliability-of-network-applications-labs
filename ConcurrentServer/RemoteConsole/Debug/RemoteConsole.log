@@ -1,0 +1,3 @@
+﻿  RemoteConsole.cpp
+C:\Users\Onya\Downloads\Telegram Desktop\SH_Laba_8-10\RemoteConsole\RemoteConsole.cpp(17,3): warning C4065: оператор switch содержит метку "default", но не содержит ни одной метки "case"
+  RemoteConsole.vcxproj -> C:\Users\Onya\Downloads\Telegram Desktop\SH_Laba_8-10\SH_Laba_8_10\Debug\RemoteConsole.exe

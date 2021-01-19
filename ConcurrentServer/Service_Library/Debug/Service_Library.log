@@ -1,0 +1,5 @@
+﻿  pch.cpp
+  dllmain.cpp
+C:\Users\Onya\Downloads\Telegram Desktop\SH_Laba_8-10\Service_Library\RandServer.h(31,22): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+     Создается библиотека C:\Users\Onya\Downloads\Telegram Desktop\SH_Laba_8-10\SH_Laba_8_10\Debug\Service_Library.lib и объект C:\Users\Onya\Downloads\Telegram Desktop\SH_Laba_8-10\SH_Laba_8_10\Debug\Service_Library.exp
+  Service_Library.vcxproj -> C:\Users\Onya\Downloads\Telegram Desktop\SH_Laba_8-10\SH_Laba_8_10\Debug\Service_Library.dll

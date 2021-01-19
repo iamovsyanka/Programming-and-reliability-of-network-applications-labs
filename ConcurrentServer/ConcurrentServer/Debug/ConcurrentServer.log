@@ -1,0 +1,5 @@
+﻿  ConcurrentServer.cpp
+C:\Users\Onya\Downloads\Telegram Desktop\SH_Laba_8-10\ConcurrentServer\ServiceWorkTime.h(21,10): warning C4101: swt_name: неиспользованная локальная переменная
+C:\Users\Onya\Downloads\Telegram Desktop\SH_Laba_8-10\ConcurrentServer\DispathServer.h(42,25): warning C4553: "==": результат выражения не используется; вы хотели использовать "="?
+C:\Users\Onya\Downloads\Telegram Desktop\SH_Laba_8-10\ConcurrentServer\DispathServer.h(43,28): warning C4553: "==": результат выражения не используется; вы хотели использовать "="?
+  ConcurrentServer.vcxproj -> C:\Users\Onya\Downloads\Telegram Desktop\SH_Laba_8-10\SH_Laba_8_10\Debug\ConcurrentServer.exe
